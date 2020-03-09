@@ -130,13 +130,13 @@ void splashscreen() {
 	cout << "\033[2J\033[1;1H"; // Diese Zeile lehrt das Terminal-Fenster!
 
 	cout << endl 
-		 << endl 
-		 << "     +-------------------------+" << endl
-		 << "     |     Little RPG Game     |" << endl
-		 << "     +-------------------------+" << endl << endl;
+			<< endl 
+			<< "     +-------------------------+" << endl
+			<< "     |     Little RPG Game     |" << endl
+			<< "     +-------------------------+" << endl << endl;
 
 	cout << "Current player name: " << mPlayer.NAME << endl
-		 << "Change? (y/n) ";
+			<< "Change? (y/n) ";
 	mDesc = input();
 
 	if (mDesc == 'y' || mDesc == 'Y')
@@ -158,8 +158,8 @@ void showInventory() {
 	cout << "\033[2J\033[1;1H"; // clear terminal window!
 	
 	cout << endl 
-		 << "   " << mPlayer.NAME << "'s Inventory" << endl
-		 << "   ";
+			<< "   " << mPlayer.NAME << "'s Inventory" << endl
+			<< "   ";
 	for (int i=0; i < mPlayer.NAME.length(); i++) {
 		cout << "-";
 	}
@@ -182,12 +182,12 @@ void showStats() {
 	cout << "\033[2J\033[1;1H"; // clear terminal window!
 	
 	cout << endl 
-		 << "   " << mPlayer.NAME << "'s status values" << endl
-		 << "   ";
-		 for (int i=0; i < mPlayer.NAME.length(); i++) {
-			 cout << "-";
-		 }
-		 cout << "----------------" << endl << endl;
+			<< "   " << mPlayer.NAME << "'s status values" << endl
+			<< "   ";
+			for (int i=0; i < mPlayer.NAME.length(); i++) {
+				cout << "-";
+			}
+			cout << "----------------" << endl << endl;
 
 	cout << "   Health        : " << mPlayer.HP << " / " << mPlayer.HP_MAX << endl <<
 			"   Attack points : " << mPlayer.ATP << endl <<
@@ -350,14 +350,14 @@ int fight(Enemy ENEMY) {
 		}
 
 		cout << endl
-			 << ENEMY.NAME << "'s HP: " << ENEMY.HP << "/" << ENEMY.HP_MAX << endl
-			 << mPlayer.NAME << "'s HP: " << mPlayer.HP << "/" << mPlayer.HP_MAX << endl
-			 << endl;
+				<< ENEMY.NAME << "'s HP: " << ENEMY.HP << "/" << ENEMY.HP_MAX << endl
+				<< mPlayer.NAME << "'s HP: " << mPlayer.HP << "/" << mPlayer.HP_MAX << endl
+				<< endl;
 
 		mDesc = ' ';
 		while (mDesc != 'A' && mDesc != 'a') {
 			cout << "What would you do? (A)ttack    (H)eal    (F)lee" << endl
-				 << "Choice: ";
+					<< "Choice: ";
 
 			mDesc = input();
 
@@ -375,6 +375,7 @@ int fight(Enemy ENEMY) {
 			}
 		}
 	}
+	return 0;
 }
 
 // using healing potion function
@@ -405,11 +406,11 @@ void check_exp() {
 		int oldEVD = mPlayer.EVD;
 
 		mPlayer.NEXTLVL += mPlayer.NEXTLVL * 1.15 + 25;
-		mPlayer.HP_MAX = mPlayer.HP_MAX * 1.1;
-		mPlayer.HP     = mPlayer.HP_MAX;
-		mPlayer.ATP    = mPlayer.ATP * 1.1;
-		mPlayer.DEF    = mPlayer.DEF * 1.2;
-		mPlayer.EVD    = mPlayer.EVD * 1.3;
+		mPlayer.HP_MAX   = mPlayer.HP_MAX * 1.1;
+		mPlayer.HP       = mPlayer.HP_MAX;
+		mPlayer.ATP      = mPlayer.ATP * 1.1;
+		mPlayer.DEF      = mPlayer.DEF * 1.2;
+		mPlayer.EVD      = mPlayer.EVD * 1.3;
 		mPlayer.LVL++;
 		
 
