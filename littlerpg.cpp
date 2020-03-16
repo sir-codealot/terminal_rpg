@@ -15,9 +15,6 @@ public:
 	int DEF;	// defense value
 	int EVD;	// evade value
 
-
-
-
 	Enemy(string new_NAME,int new_HP, int new_EXP,int new_ATP,int new_DEF,int new_IVD)
 	{
 		NAME   = new_NAME;
@@ -202,14 +199,6 @@ void showStats() {
 
 bool PlayerBox() {
 	cout << "\033[2J\033[1;1H"; // clear terminal window!
-	// cout << "+--------------------------------+" << endl <<
-	// 		"    Name            : " << mPlayer.NAME << endl <<
-	// 		"    Level           : " << mPlayer.LVL << endl <<
-	// 		"    Expirience      : " << mPlayer.EXP << endl <<
-	// 		"    Next Level at   : " << mPlayer.NEXTLVL << endl << 
-	// 		"    Health points   : " << mPlayer.HP << " / " << mPlayer.HP_MAX << endl << 
-	// 		"    Healing potions : " << hpPotion << endl <<
-	// 		"+--------------------------------+" << endl << endl;
 
 	cout << "+--------";	// string before name
 	for (int i=0; i < mPlayer.NAME.size(); i++) {cout << "-";}
