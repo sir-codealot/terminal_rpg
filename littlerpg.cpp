@@ -105,6 +105,7 @@ char input();
 string string_input();
 int fight(Enemy ENEMY);
 bool PlayerBox();
+void display_street_straight();
 
 
 int main()
@@ -234,7 +235,15 @@ bool PlayerBox() {
 	for (int i=0; i < to_string(mPlayer.HP_MAX).size(); i++) {cout << "-";}
 	cout << "--------------";
 	for (int i=0; i < to_string(hpPotion).size(); i++) {cout << "-";}
-	cout << "--+" << endl;
+	cout << "--+" << endl << endl;
+
+	display_street_straight();
+	/* TODO: implement Map
+	*	
+	*
+	*
+	*/
+
 
 	cout << "Commands:    (W)alk on   (H)ealing potion   (I)nventory   (S)tats   (Q)uit" << endl << endl << "Choice: ";
 	mDesc = input();
@@ -491,4 +500,21 @@ string string_input() {
 	cin >> input;
 	while ((buffer = cin.get()) != '\n' && buffer != EOF);
 	return input;
+}
+
+void display_street_straight() {
+	cout << "  +----------------------------------------------------+" << endl
+		 << "  |   /MMMMMMMM\\                    __________         |" << endl
+		 << "  |  |MMMMMMMMM|                   /       ___\\        |" << endl
+		 << "  |   \\MMMMMMM/                    \\______/            |" << endl
+		 << "  |    \\MMMMM/                                         |" << endl
+		 << "  |     \\MMM/                                          |" << endl
+		 << "  |______| |___________________________________________|" << endl
+		 << "  |      | |             /        \\                    |" << endl
+		 << "  |      | |            /          \\                   |" << endl
+		 << "  |      | |           /            \\       /MM\\       |" << endl
+		 << "  |      | |          /              \\     |MMMM|      |" << endl
+		 << "  |      | |         /                \\                |" << endl
+		 << "  |      MMM        /                  \\               |" << endl
+		 << "  +----------------------------------------------------+" << endl;
 }
