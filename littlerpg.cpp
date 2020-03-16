@@ -99,6 +99,7 @@ void showStats();
 void enemyAttack(int number);
 void use_healing_potion();
 void check_exp();
+void work_or_fight();
 void get_loot(Enemy En);
 char input();
 string string_input();
@@ -108,7 +109,6 @@ bool PlayerBox();
 
 int main()
 {	
-	//int k=0;
 	splashscreen();
 
 	while (true) {
@@ -158,8 +158,8 @@ void showInventory() {
 	cout << "\033[2J\033[1;1H"; // clear terminal window!
 	
 	cout << endl 
-			<< "   " << mPlayer.NAME << "'s Inventory" << endl
-			<< "   ";
+		<< "   " << mPlayer.NAME << "'s Inventory" << endl
+		<< "   ";
 	for (int i=0; i < mPlayer.NAME.length(); i++) {
 		cout << "-";
 	}
@@ -201,14 +201,40 @@ void showStats() {
 
 bool PlayerBox() {
 	cout << "\033[2J\033[1;1H"; // clear terminal window!
-	cout << "+--------------------------------+" << endl <<
-			"    Name            : " << mPlayer.NAME << endl <<
-			"    Level           : " << mPlayer.LVL << endl <<
-			"    Expirience      : " << mPlayer.EXP << endl <<
-			"    Next Level at   : " << mPlayer.NEXTLVL << endl << 
-			"    Health points   : " << mPlayer.HP << " / " << mPlayer.HP_MAX << endl << 
-			"    Healing potions : " << hpPotion << endl <<
-			"+--------------------------------+" << endl << endl;
+	// cout << "+--------------------------------+" << endl <<
+	// 		"    Name            : " << mPlayer.NAME << endl <<
+	// 		"    Level           : " << mPlayer.LVL << endl <<
+	// 		"    Expirience      : " << mPlayer.EXP << endl <<
+	// 		"    Next Level at   : " << mPlayer.NEXTLVL << endl << 
+	// 		"    Health points   : " << mPlayer.HP << " / " << mPlayer.HP_MAX << endl << 
+	// 		"    Healing potions : " << hpPotion << endl <<
+	// 		"+--------------------------------+" << endl << endl;
+
+	cout << "+--------";	// string before name
+	for (int i=0; i < mPlayer.NAME.size(); i++) {cout << "-";}
+	cout << "------------";	//between name and level
+	for (int i=0; i < to_string(mPlayer.LVL).size(); i++) {cout << "-";}
+	cout << "---------"; // between level and hp
+	for (int i=0; i < to_string(mPlayer.HP).size(); i++) {cout << "-";}
+	cout << "---"; // between HP and HP_MAX
+	for (int i=0; i < to_string(mPlayer.HP_MAX).size(); i++) {cout << "-";}
+	cout << "--------------";
+	for (int i=0; i < to_string(hpPotion).size(); i++) {cout << "-";}
+	cout << "--+" << endl;
+	
+	cout << "   Name: " << mPlayer.NAME << "  |  Level: " << mPlayer.LVL << "  |  HP: " << mPlayer.HP << " / " << mPlayer.HP_MAX << "  |  Potions: " << hpPotion << endl;
+	
+	cout << "+--------";	// string before name
+	for (int i=0; i < mPlayer.NAME.size(); i++) {cout << "-";}
+	cout << "------------";	//between name and level
+	for (int i=0; i < to_string(mPlayer.LVL).size(); i++) {cout << "-";}
+	cout << "---------"; // between level and hp
+	for (int i=0; i < to_string(mPlayer.HP).size(); i++) {cout << "-";}
+	cout << "---"; // between HP and HP_MAX
+	for (int i=0; i < to_string(mPlayer.HP_MAX).size(); i++) {cout << "-";}
+	cout << "--------------";
+	for (int i=0; i < to_string(hpPotion).size(); i++) {cout << "-";}
+	cout << "--+" << endl;
 
 	cout << "Commands:    (W)alk on   (H)ealing potion   (I)nventory   (S)tats   (Q)uit" << endl << endl << "Choice: ";
 	mDesc = input();
@@ -216,11 +242,7 @@ bool PlayerBox() {
 	switch (mDesc)
 	{	
 		case 'W':
-		case 'w':	len = ((sizeof(mEnemy)/sizeof(*mEnemy))-1);
-					srand((unsigned) time(0));
-					mNumber=rand() % len;
-
-					enemyAttack(mNumber);
+		case 'w':	work_or_fight();
 					break;
 		
 		case 'H':
@@ -426,6 +448,13 @@ void check_exp() {
 	}
 }
 
+void work_or_fight() {
+	len = ((sizeof(mEnemy)/sizeof(*mEnemy))-1);
+	srand((unsigned) time(0));
+	mNumber=rand() % len;
+
+	enemyAttack(mNumber);
+}
 
 void get_loot(Enemy En) {
 	len = (sizeof(loot)/sizeof(*loot))-1;
